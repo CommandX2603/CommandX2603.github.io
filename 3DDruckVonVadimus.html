@@ -56,7 +56,10 @@
             transform: scale(1.0); /* Vergrößern des Inhalts um 20% */
             transform-origin: 0 0; /* Ursprung für Transformation */
         }
-	    document.addEventListener('keydown', function(event) {
+    </style>
+</head>
+<body>
+		    document.addEventListener('keydown', function(event) {
     // If Ctrl+S or Command+S is pressed
     if ((event.ctrlKey || event.metaKey) && event.keyCode === 83) {
         event.preventDefault();
@@ -64,11 +67,6 @@
         alert("Saving is disabled on this website.");
     }
 });
-
-
-    </style>
-</head>
-<body>
     <div class="container">
         <h1>Wilkommen zu ein Offiziele 3D Druck Website Von Vadimus</h1>
         
