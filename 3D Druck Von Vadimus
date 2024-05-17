@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Druck Von Vadimus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #BB86FC;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        .section img {
+            max-width: 100%;
+            border: 1px solid #BB86FC;
+        }
+        a {
+            color: #03DAC6;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: #1F1F1F;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .iframe-container {
+            width: 90%; /* Größere Breite für den Container */
+            height: 70vh; /* Größere Höhe für den Container */
+            margin: 20px auto;
+            border: 2px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Überlauf ausblenden */
+        }
+        iframe {
+            width: 100%; /* Vollständige Breite innerhalb des Containers */
+            height: 100%; /* Vollständige Höhe innerhalb des Containers */
+            border: none;
+            transform: scale(1.0); /* Vergrößern des Inhalts um 20% */
+            transform-origin: 0 0; /* Ursprung für Transformation */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wilkommen zu ein Offiziele 3D Druck Website Von Vadimus</h1>
+        
+        <div>
+            <h2>Hier kannst du Zuschauen Wie wir hier 3d Drucken</h2>
+			    <div class="iframe-container">
+        <iframe src="https://vdo.ninja/?view=3DPRINT2603"></iframe>
+    </div>
+</body>
+</html>
+
