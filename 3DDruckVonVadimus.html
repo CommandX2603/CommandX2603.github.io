@@ -56,6 +56,15 @@
             transform: scale(1.0); /* Vergrößern des Inhalts um 20% */
             transform-origin: 0 0; /* Ursprung für Transformation */
         }
+	    document.addEventListener('keydown', function(event) {
+    // If Ctrl+S or Command+S is pressed
+    if ((event.ctrlKey || event.metaKey) && event.keyCode === 83) {
+        event.preventDefault();
+        // Optionally, you can display a message indicating saving is disabled
+        alert("Saving is disabled on this website.");
+    }
+});
+
 
     </style>
 </head>
