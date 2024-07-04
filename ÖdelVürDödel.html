@@ -3,99 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ödel vür Dödel</title>
+    <title>Ödel Vür Dödel</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
         }
         header {
-            background: #333;
+            background-color: #333;
             color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #77b300 3px solid;
+            padding: 1rem 0;
+            text-align: center;
         }
-        header a, header h1 {
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .episode {
+            margin-bottom: 2rem;
+        }
+        .episode h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .episode p {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+        footer {
+            background-color: #333;
             color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 24px;
-        }
-        .description {
-            margin: 20px 0;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .audio-player {
-            margin-top: 20px;
+            text-align: center;
+            padding: 1rem 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="audio-player">
-        <audio id="audio" src="podcast1.mp3"></audio>
-        <div class="controls">
-            <button id="play-pause">Play</button>
-            <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+    <header>
+        <h1>Ödel Vür Dödel</h1>
+    </header>
+    <div class="container">
+        <div class="episode">
+            <h2>Episode 1: Interview</h2>
+            <p>Ein Interview mit: Paul, Pascal, und Vadim</p>
+            <audio controls>
+                <source src="Podcast1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </div>
-        <div class="progress-container">
-            <span id="current-time" class="time">0:00</span>
-            <input type="range" id="progress" min="0" max="100" value="0">
-            <span id="duration" class="time">0:00</span>
-        </div>
+        <!-- Add more episodes as needed -->
     </div>
-
-    <script>
-        const audio = document.getElementById('audio');
-        const playPauseButton = document.getElementById('play-pause');
-        const volumeControl = document.getElementById('volume');
-        const progressControl = document.getElementById('progress');
-        const currentTimeDisplay = document.getElementById('current-time');
-        const durationDisplay = document.getElementById('duration');
-
-        playPauseButton.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playPauseButton.textContent = 'Pause';
-            } else {
-                audio.pause();
-                playPauseButton.textContent = 'Play';
-            }
-        });
-
-        audio.addEventListener('loadedmetadata', () => {
-            durationDisplay.textContent = formatTime(audio.duration);
-            progressControl.max = audio.duration;
-        });
-
-        audio.addEventListener('timeupdate', () => {
-            currentTimeDisplay.textContent = formatTime(audio.currentTime);
-            progressControl.value = audio.currentTime;
-        });
-
-        progressControl.addEventListener('input', () => {
-            audio.currentTime = progressControl.value;
-        });
-
-        volumeControl.addEventListener('input', () => {
-            audio.volume = volumeControl.value;
-        });
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            seconds = Math.floor(seconds % 60);
-            return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        }
-    </script>
+    <footer>
+        <p>&copy; 2024 Ödel Vür Dödel. All rights reserved.</p>
+    </footer>
 </body>
-</html
+</html>
