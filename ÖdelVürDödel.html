@@ -42,21 +42,60 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Ödel vür Dödel</h1>
+    <div class="audio-player">
+        <audio id="audio" src="podcast1.mp3"></audio>
+        <div class="controls">
+            <button id="play-pause">Play</button>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
         </div>
-    </header>
-    <div class="container">
-        <p class="description">
-            Wilkommen zu Ödel vür Dödel Podcast
-        </p>
-        <div class="audio-player">
-            <audio controls>
-                <source src="Podcast1.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
+        <div class="progress-container">
+            <span id="current-time" class="time">0:00</span>
+            <input type="range" id="progress" min="0" max="100" value="0">
+            <span id="duration" class="time">0:00</span>
         </div>
     </div>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const playPauseButton = document.getElementById('play-pause');
+        const volumeControl = document.getElementById('volume');
+        const progressControl = document.getElementById('progress');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const durationDisplay = document.getElementById('duration');
+
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationDisplay.textContent = formatTime(audio.duration);
+            progressControl.max = audio.duration;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            currentTimeDisplay.textContent = formatTime(audio.currentTime);
+            progressControl.value = audio.currentTime;
+        });
+
+        progressControl.addEventListener('input', () => {
+            audio.currentTime = progressControl.value;
+        });
+
+        volumeControl.addEventListener('input', () => {
+            audio.volume = volumeControl.value;
+        });
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            seconds = Math.floor(seconds % 60);
+            return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+    </script>
 </body>
 </html
