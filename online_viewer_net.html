@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D-Druck Live Stream</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1b1b1b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        #stream-container {
+            width: 90%;
+            max-width: 1000px;
+            background-color: #2c2c2c;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+            max-width: 600px; /* Größer gemacht */
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        iframe {
+            width: 100%;
+            height: 550px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #bbbbbb;
+        }
+
+        .footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div id="stream-container">
+    <!-- Ersetze den 'YOUR_IMAGE_LINK' durch deinen Bild-Link -->
+    <img src="https://commandx2603.github.io/3DDruck.png" alt="3D-Druck Bild">
+    <!-- Ersetze den 'YOUR_STREAM_LINK' durch deinen VDO.Ninja-Link -->
+    <h2><a href="https://commandx2603.github.io">Vadimus Websitus</a></h2>
+    <iframe src="https://vdo.ninja/?view=3DPRINT260313579" allowfullscreen></iframe>
+    <div class="footer">
+        <h2>Hosted by CommandX2603</h2>
+    </div>
+</div>
+
+</body>
+</html>
