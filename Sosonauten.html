@@ -1,94 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosonauten Offizielle Website</title>
     <style>
- body {
-            font-family: Arial, sans-serif;
-            background-color: #242323;
+        /* Allgemeine Stile */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0e0e10; /* Sehr dunkles Schwarz-Blau */
+            color: #f0f0f0;
             margin: 0;
             padding: 0;
-            color: #fff;
-	    text-align: center;
+            text-align: center;
         }
+
         header {
-            background-color: #012969;
+            background-color: #0d47a1; /* Dunkles Blau */
             color: #fff;
-            padding: 20px;
+            padding: 40px 20px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
-        h1 {
-            margin: 0;
-            font-size: 36px;
+
+        header img {
+            width: 600px; /* Vergrößertes Bild */
+            height: auto;
+            margin-bottom: 20px;
         }
+
+        header h1 {
+            font-size: 2.5em; /* Größerer Titel */
+            margin: 20px 0;
+        }
+
+        header h2 {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            font-weight: normal;
+            color: #bbdefb; /* Hellblau für Text */
+        }
+
         nav {
-            background-color: #050505;
-            padding: 10px 0;
+            background-color: #111; /* Sehr dunkles Schwarz */
+            padding: 20px 0;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
+
         nav a {
-            color: #fff;
+            color: #bbdefb; /* Hellblau */
             text-decoration: none;
             padding: 10px 20px;
-            margin: 0 5px;
+            margin: 0 10px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            font-weight: bold;
         }
+
         nav a:hover {
-            background-color: #555;
-		color: #fff;
-		text-align: center;
-        }
-        section {
-            padding: 20px;
-        }
-        .content {
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-        footer {
-            background-color: #000;
+            background-color: #0d47a1; /* Dunkelblau bei Hover */
             color: #fff;
-            padding: 20px;
+        }
+
+        main {
+            padding: 50px 20px;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 0 auto;
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            background-color: #151515; /* Dunkler Schwarzton */
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            color: #2196f3; /* Kräftiges Blau */
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #cfd8dc; /* Hellgrau für Text */
+        }
+
+        iframe {
+            margin-top: 40px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+            width: 600px;
+            height: 600px;
+        }
+
+        footer {
+            background-color: #111; /* Sehr dunkles Schwarz */
+            color: #888;
+            padding: 20px;
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Mobile Optimierung */
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            iframe {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+
     <header>
-	    <img src="Sosonauten_Website.png" alt="Die sosonauten">
-<h2>&copy; 2024 Sosonauten. Alle Rechte vorbehalten. Hosted by CommandX2603</h2>
-	</header>
+        <img src="https://commandx2603.github.io/Sosonauten_Website.png" alt="Die Sosonauten">
+        <h1>Die Offizielle Sosonauten Website</h1>
+        <h2>&copy; 2024 Sosonauten. Alle Rechte vorbehalten. Hosted by CommandX2603</h2>
+    </header>
+
     <nav>
-        <a href="https://commandx2603.github.io">Vadimus Websitus</a> 
+        <a href="https://commandx2603.github.io">Vadimus Websitus</a>
         <a href="SoosAbout.html">Über uns</a>
         <a href="SoosMusic.html">Unsere Videos</a>
         <a href="SoosPassword.html" target="_new">Admin Panel</a>
-        <a href="https://www.youtube.com/@SOSONAUTEN">Sosonauten youtube channel</a>
+        <a href="https://www.youtube.com/@SOSONAUTEN">Sosonauten YouTube Channel</a>
     </nav>
+
     <main>
         <section id="about">
-            <h2>Ein Offiziele Website Von SOSONAUTEN</h2>
-		<p>und wenn ihr wollt, könnt ihr auch uns abonnieren auf unsere channel</p>
-	<h2>Mitglieder</h2>
-        	<p>Juliusus, Paulus, Vadimus, Nilsus</p>
-        	<h2>Kontaktieren</h2>
-        	<p>drdj.commandx@gmail.com</a>.</p>
-		<h2>Credits</h2>
-		<p>Negative0</p>
-			<iframe src="https://e.widgetbot.io/channels/1241405561720017109/1241413161236561950" allow="clipboard-write; fullscreen" height="600" width="600"></iframe>
-	</section>	    
-	</main>
+            <h2>Offizielle Website der SOSONAUTEN</h2>
+            <p>Abonniert unseren Kanal und bleibt auf dem Laufenden!</p>
+
+            <h2>Mitglieder</h2>
+            <p>Juliusus, Paulus, Vadimus, Nilsus</p>
+
+            <h2>Kontaktieren</h2>
+            <p>drdj.commandx@gmail.com</p>
+
+            <h2>Credits</h2>
+            <p>Negative0</p>
+
+            <iframe src="https://e.widgetbot.io/channels/1241405561720017109/1241413161236561950" allow="clipboard-write; fullscreen"></iframe>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sosonauten. Alle Rechte vorbehalten.</p>
+        <p>Hosted by CommandX2603</p>
+    </footer>
+
 </body>
 </html>
-________                                              _____              
-__  ___/______ ______________ _______ ______ _____  ____  /______ _______ 
-_____ \ _  __ \__  ___/_  __ \__  __ \_  __ `/_  / / /_  __/_  _ \__  __ \
-____/ / / /_/ /_(__  ) / /_/ /_  / / // /_/ / / /_/ / / /_  /  __/_  / / /
-/____/  \____/ /____/  \____/ /_/ /_/ \__,_/  \__,_/  \__/  \___/ /_/ /_/ 
-
