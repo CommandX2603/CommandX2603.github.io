@@ -1,75 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VadimusWebsitus</title>
+    <title>Vadimus Websitus</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Oswald:wght@200&display=swap');
+</style>
     <style>
         body {
-            background-color: #1a1a1a;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 50px;
-        }
-        h1 {
-            margin-bottom: 30px;
-        }
-        ul {
-            list-style-type: none;
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Lexend', sans-serif;
+            margin: 0;
             padding: 0;
-            margin: 0 auto;
-            max-width: 600px;
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        li {
+
+        header {
+            background-color: #1f1f1f;
+            width: 100%;
+            padding: 40px 20px; /* Mehr Platz für das größere Bild */
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        header img {
+            width: 1000px; /* Breiteres Bild */
+            height: auto;
             margin-bottom: 20px;
-            background-color: #333;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
+            border: 0px solid #4caf50; /* Optionale Umrandung */
         }
-        li:hover {
-            background-color: #444;
+        header h1 {
+            font-size: 2.5em;
+            color: #6b30ff;
+            margin: 0;
         }
-        a {
-            color: #fff;
+
+        main {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            width: 45%;
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h2 {
+            font-size: 1.8em;
+            color: #8a5cff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: #bdbdb;
+            margin-bottom: 20px;
+        }
+
+        .card a {
             text-decoration: none;
+            color: #fff;
+            background-color: #6b30ff;
+            padding: 10px 20px;
+            border-radius: 6px;
             font-weight: bold;
+            transition: background-color 0.3s;
         }
-        p {
-            color: #ccc;
-            margin-top: 10px;
+
+        .card a:hover {
+            background-color: #0077ff;
+        }
+
+        h2.comment-section {
+            margin-top: 50px;
+            color: #8a5cff;
+        }
+
+        iframe {
+            border: none;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+            width: 100%;
+            height: 600px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            background-color: #1f1f1f;
+            color: #9e9e9e;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-  <img src="VadimusWebsitus.png" alt="Vadimus Websitus">
-    <ul>
-        <li>
-            <a href="https://commandx2603.github.io/3DDruck">3D Druck</a>
-            <p>Da Kannst du 3D drucker zuschauen und furzen</p>
-        </li>
-        <li>
-            <a href="Sosonauten.html">Sosonauten</a>
-            <p>Ein Beste Band Von Vadimus, und Nilsus Gemacht</p>
-        </li>
-        <li>
-            <a href="FortniteSüchtis2.0.html">FortniteSüchtis2.0</a>
-            <p>Ein Youtube Channel Mit Fortnite Videos und auch mit memes</p>
-        </li>
-       <li>
-            <a href="Aramsamsam.html">Community Website</a>
-            <p>Ein website wo Community anfragt was man da auf den website hinfügt</p>
-        </li>
-           <li>
-            <a href="ÖdelVürDödel.html">Ödel Vür Dödel</a>
-            <p>Ein Podcast von Vadimus, und Juliusus gemacht, es geht über interviews.</p>
-        </li>
-<h2>Hier kannst du kommentieren</h2>
-        <li><iframe src="https://e.widgetbot.io/channels/1241405561720017109/1241413161236561950" allow="clipboard-write; fullscreen" height="600" width="600"></iframe>
-        </li>
-    </ul>
+
+<header>
+    <img src="https://commandx2603.github.io/VadimusWebsitus.png" alt="Vadimus Websitus Logo">
+</header>
+
+<main>
+    
+    <div class="card">
+        <div class="card-content">
+            <h2>3D Druck</h2>
+            <p>Da kannst du 3D-Drucker zuschauen und interessante Projekte sehen.</p>
+            <a href="https://commandx2603.github.io/3DDruck">Besuchen</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-content">
+            <h2>Sosonauten</h2>
+            <p>Die beste Band von Vadimus und Nilsus – Musik für die Ewigkeit.</p>
+            <a href="Sosonauten.html">Besuchen</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-content">
+            <h2>FortniteSüchtis 2.0</h2>
+            <p>Ein YouTube-Kanal mit Fortnite-Videos und lustigen Memes.</p>
+            <a href="FortniteSüchtis2.0.html">Besuchen</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-content">
+            <h2>Community Website</h2>
+            <p>Hier kann die Community Ideen einreichen und die Website mitgestalten.</p>
+            <a href="Aramsamsam.html">Besuchen</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-content">
+            <h2>Ödel Vür Dödel</h2>
+            <p>Ein Podcast von Vadimus und Juliusus – interessante Interviews und Gespräche.</p>
+            <a href="ÖdelVürDödel.html">Besuchen</a>
+        </div>
+    </div>
+</main>
+
+<h2 class="comment-section">Hier kannst du kommentieren</h2>
+<iframe src="https://e.widgetbot.io/channels/1241405561720017109/1241413161236561950" allow="clipboard-write; fullscreen"></iframe>
+
+<footer>
+    <p>&copy; 2024 Vadimus Websitus. Alle Rechte vorbehalten.</p>
+</footer>
+
 </body>
 </html>
