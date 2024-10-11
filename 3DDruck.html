@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D-Druck Live Stream</title>
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Oswald:wght@200&display=swap');
+    </style>
+    <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Lexend', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1b1b1b;
@@ -29,7 +32,7 @@
 
         img {
             width: 100%;
-            max-width: 600px; /* Größer gemacht */
+            max-width: 600px;
             height: auto;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -42,6 +45,30 @@
             border: none;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button Container to align buttons side by side */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Space between the buttons */
+            margin-top: 20px;
+        }
+
+        /* Button Styles */
+        a.button {
+            text-decoration: none;
+            color: #fff;
+            background-color: #6b30ff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #2b1463; /* Darker blue on hover */
         }
 
         .footer {
@@ -63,12 +90,16 @@
 <body>
 
 <div id="stream-container">
-    <!-- Ersetze den 'YOUR_IMAGE_LINK' durch deinen Bild-Link -->
     <img src="https://commandx2603.github.io/3DDruck.png" alt="3D-Druck Bild">
-    <!-- Ersetze den 'YOUR_STREAM_LINK' durch deinen VDO.Ninja-Link -->
-    <h2><a href="https://commandx2603.github.io">Vadimus Websitus</a></h2>
-    <h2><a href="https://commandx2603.github.io/3DDruckShop">Shop</a></h2>
+    
+    <!-- Button Container for Side-by-Side Buttons -->
+    <div class="button-container">
+        <a class="button" href="https://commandx2603.github.io">Vadimus Websitus</a>
+        <a class="button" href="https://commandx2603.github.io/3DDruckShop">Shop</a>
+    </div>
+
     <iframe src="https://vdo.ninja/?view=3DPRINT260313579" allowfullscreen></iframe>
+    
     <div class="footer">
         <h2>Hosted by CommandX2603</h2>
     </div>
