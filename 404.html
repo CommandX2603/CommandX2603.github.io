@@ -1,198 +1,80 @@
-<html><head><base href="https://websimgames.com/">
+<html><head><base href="." />
 <meta charset="UTF-8">
 <title>404 - Page Not Found</title>
 <style>
   body {
     margin: 0;
+    padding: 0;
     height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     background: #1a1a1a;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #fff;
     overflow: hidden;
-    cursor: none;
-  }
-
-  .glitch {
-    font-size: 8em;
-    font-weight: bold;
-    position: relative;
-    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
-                 0.025em 0.04em 0 #fffc00;
-    animation: glitch 725ms infinite;
-    transition: transform 0.3s;
-  }
-
-  .glitch span {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .glitch span:first-child {
-    animation: glitch 500ms infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-    transform: translate(-0.04em, -0.03em);
-    opacity: 0.75;
-  }
-
-  .glitch span:last-child {
-    animation: glitch 375ms infinite;
-    clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
-    transform: translate(0.04em, 0.03em);
-    opacity: 0.75;
-  }
-
-  @keyframes glitch {
-    0% {
-      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
-                   0.025em 0.04em 0 #fffc00;
-    }
-    15% {
-      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
-                   0.025em 0.04em 0 #fffc00;
-    }
-    16% {
-      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
-                   -0.05em -0.05em 0 #fffc00;
-    }
-    49% {
-      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
-                   -0.05em -0.05em 0 #fffc00;
-    }
-    50% {
-      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
-                   0 -0.04em 0 #fffc00;
-    }
-    99% {
-      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
-                   0 -0.04em 0 #fffc00;
-    }
-    100% {
-      text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
-                   -0.04em -0.025em 0 #fffc00;
-    }
-  }
-
-  .glitch-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    animation: glitchOverlay 2s infinite;
-    mix-blend-mode: difference;
-  }
-
-  @keyframes glitchOverlay {
-    0% { background: transparent; }
-    25% { background: rgba(255,0,252,0.1); }
-    26% { background: transparent; }
-    74% { background: transparent; }
-    75% { background: rgba(0,255,252,0.1); }
-    76% { background: transparent; }
-  }
-
-  .scanline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(255, 255, 255, 0.05) 0.5%,
-      transparent 1%
-    );
-    animation: scanline 10s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes scanline {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100vh); }
-  }
-
-  .custom-cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #00fffc;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    transition: transform 0.1s;
-    z-index: 9999;
   }
 
   .container {
     text-align: center;
-    color: #fff;
     position: relative;
+  }
+
+  .glitch-text {
+    font-size: 8em;
+    font-weight: bold;
+    position: relative;
+    animation: glitch 1s infinite;
+  }
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+      text-shadow: -2px 2px #0ff, 2px -2px #f00;
+    }
+    25% {
+      transform: translate(-2px, 2px);
+      text-shadow: 2px -2px #0ff, -2px 2px #f00;
+    }
+    50% {
+      transform: translate(2px, -2px);
+      text-shadow: -2px 2px #0ff, 2px -2px #f00;
+    }
+    75% {
+      transform: translate(-2px, -2px);
+      text-shadow: 2px 2px #0ff, -2px -2px #f00;
+    }
+    100% {
+      transform: translate(0);
+      text-shadow: -2px 2px #0ff, 2px -2px #f00;
+    }
   }
 
   .message {
     font-size: 1.5em;
-    margin-top: 1em;
-    color: #666;
-    position: relative;
-    overflow: hidden;
+    margin-top: 20px;
+    opacity: 0.8;
   }
 
-  .message::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 3px;
-    background: #00fffc;
-    animation: cursor 1s infinite;
-  }
-
-  @keyframes cursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  .home-link {
-    display: inline-block;
-    margin-top: 2em;
-    padding: 1em 2em;
-    background: linear-gradient(45deg, #fc00ff, #00fffc);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
+  .home-button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
   }
 
-  .home-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
+  .home-button:hover {
+    background: #fff;
+    color: #1a1a1a;
   }
 
-  .home-link:hover::before {
-    left: 100%;
-  }
-
-  .home-link:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(0,255,252,0.5);
-  }
-
-  .static {
+  .static-effect {
     position: absolute;
     top: 0;
     left: 0;
@@ -200,146 +82,43 @@
     height: 100%;
     pointer-events: none;
     opacity: 0.1;
-    animation: staticAnimation 5s infinite;
-  }
-
-  @keyframes staticAnimation {
-    0% { opacity: 0.1; }
-    50% { opacity: 0.15; }
-    100% { opacity: 0.1; }
-  }
-
-  .broken-pieces {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .piece {
-    position: absolute;
-    background: rgba(255,255,255,0.1);
-    transform: rotate(var(--rotation));
-    animation: float var(--duration) infinite ease-in-out;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(var(--rotation)); }
-    50% { transform: translateY(-20px) rotate(calc(var(--rotation) + 5deg)); }
+    z-index: -1;
   }
 </style>
 </head>
 <body>
 
-<div class="glitch-overlay"></div>
-<div class="scanline"></div>
-<div class="custom-cursor"></div>
-<div class="broken-pieces" id="pieces"></div>
-<div class="static">
-  <svg viewBox="0 0 100 100" width="100%" height="100%">
+<div class="container">
+  <div class="glitch-text">404</div>
+  <div class="message">Oops! The page you're looking for has vanished into the digital void.</div>
+  <a href="https://example.com" class="home-button">Return Home</a>
+  
+  <svg class="static-effect" width="100%" height="100%" viewBox="0 0 100 100">
     <filter id="noise">
-      <feTurbulence type="fractalNoise" baseFrequency="1.5" numOctaves="4" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/>
     </filter>
     <rect width="100%" height="100%" filter="url(#noise)"/>
   </svg>
 </div>
 
-<div class="container">
-  <div class="glitch">
-    404
-    <span>404</span>
-    <span>404</span>
-  </div>
-  <div class="message">Oops! The page you're looking for has glitched out of existence.</div>
-  <a href="https://commandx2603.github.io" class="home-link">Return Home</a>
-</div>
-
 <script>
-// Custom cursor
 document.addEventListener('mousemove', (e) => {
-  const cursor = document.querySelector('.custom-cursor');
-  cursor.style.left = e.clientX - 10 + 'px';
-  cursor.style.top = e.clientY - 10 + 'px';
-  
-  const glitch = document.querySelector('.glitch');
-  const bounds = glitch.getBoundingClientRect();
-  const mouseX = e.clientX;
-  const mouseY = e.clientY;
-  const centerX = bounds.left + bounds.width / 2;
-  const centerY = bounds.top + bounds.height / 2;
-  const deltaX = (mouseX - centerX) / 50;
-  const deltaY = (mouseY - centerY) / 50;
-  
-  glitch.style.textShadow = `
-    ${0.05 + deltaX}em ${deltaY}em 0 #00fffc,
-    ${-0.03 - deltaX}em ${-0.04 + deltaY}em 0 #fc00ff,
-    ${0.025 + deltaX}em ${0.04 + deltaY}em 0 #fffc00
-  `;
+  const container = document.querySelector('.container');
+  const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+  const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+  container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
 });
 
-// Random glitch effect
+// Add random glitch effect
 setInterval(() => {
-  const glitch = document.querySelector('.glitch');
-  const container = document.querySelector('.container');
+  const glitchText = document.querySelector('.glitch-text');
+  const randomOffset = Math.random() * 10 - 5;
+  glitchText.style.transform = `translateX(${randomOffset}px)`;
   
-  if(Math.random() > 0.92) {
-    container.style.transform = `translate(${Math.random() * 10 - 5}px, ${Math.random() * 10 - 5}px)`;
-    setTimeout(() => {
-      container.style.transform = 'translate(0, 0)';
-    }, 50);
-  }
-  
-  if(Math.random() > 0.96) {
-    glitch.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
-    setTimeout(() => {
-      glitch.style.filter = 'none';
-    }, 50);
-  }
-}, 50);
-
-// More intense broken pieces
-function createPieces() {
-  const pieces = document.getElementById('pieces');
-  for(let i = 0; i < 25; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'piece';
-    piece.style.setProperty('--rotation', `${Math.random() * 360}deg`);
-    piece.style.setProperty('--duration', `${2 + Math.random() * 3}s`);
-    piece.style.width = `${5 + Math.random() * 30}px`;
-    piece.style.height = `${5 + Math.random() * 30}px`;
-    piece.style.left = `${Math.random() * 100}%`;
-    piece.style.top = `${Math.random() * 100}%`;
-    pieces.appendChild(piece);
-  }
-}
-
-createPieces();
-
-// Glitchy typing effect
-const message = document.querySelector('.message');
-const text = message.textContent;
-message.textContent = '';
-let index = 0;
-
-function typeText() {
-  if(index < text.length) {
-    if(Math.random() > 0.9) {
-      message.textContent += String.fromCharCode(33 + Math.floor(Math.random() * 94));
-      setTimeout(() => {
-        message.textContent = message.textContent.slice(0, -1) + text.charAt(index);
-        index++;
-        typeText();
-      }, 50);
-    } else {
-      message.textContent += text.charAt(index);
-      index++;
-      setTimeout(typeText, 50);
-    }
-  }
-}
-
-typeText();
+  setTimeout(() => {
+    glitchText.style.transform = 'translateX(0)';
+  }, 50);
+}, 2000);
 </script>
 
 </body></html>
