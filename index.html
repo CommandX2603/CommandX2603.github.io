@@ -1,15 +1,90 @@
-<!DOCTYPE html>
+<html><head><base href="." /><!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vadimus Websitus</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Oswald:wght@200&display=swap');
-</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&family=Oswald:wght@200&display=swap');
+
+        :root {
+            --primary-color: #6b30ff;
+            --hover-color: #8a5cff;
+            --bg-color: #121212;
+        }
+
+        /* Added animated background particles */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        .particle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* Added animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(107, 48, 255, 0.1), 
+                rgba(138, 92, 255, 0.1),
+                rgba(107, 48, 255, 0.1));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Added floating circles background */
+        .circles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(107, 48, 255, 0.1);
+            animation: circleFloat 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        @keyframes circleFloat {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+
         body {
-            background-color: #121212;
+            background-color: var(--bg-color);
             color: #e0e0e0;
             font-family: 'Lexend', sans-serif;
             margin: 0;
@@ -17,26 +92,45 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background-color 0.5s ease;
         }
 
         header {
             background-color: #1f1f1f;
             width: 100%;
-            padding: 40px 20px; /* Mehr Platz für das größere Bild */
+            padding: 40px 20px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        header img {
-            width: 1000px; /* Breiteres Bild */
-            height: auto;
-            margin-bottom: 20px;
-            border: 0px solid #4caf50; /* Optionale Umrandung */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            animation: loading 3s linear infinite;
         }
+
+        @keyframes loading {
+            0% { left: -100% }
+            100% { left: 100% }
+        }
+
         header h1 {
             font-size: 2.5em;
-            color: #6b30ff;
+            color: var(--primary-color);
             margin: 0;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px var(--primary-color); }
+            to { text-shadow: 0 0 20px var(--primary-color); }
         }
 
         main {
@@ -46,6 +140,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            perspective: 1000px;
         }
 
         .card {
@@ -54,57 +149,158 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
             width: 45%;
             margin-bottom: 30px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.5s ease;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: fadeInUp 1s ease-out, floatingCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatingCard {
+            0% { transform: translateY(0) rotate3d(1, 1, 1, 0deg); }
+            50% { transform: translateY(-10px) rotate3d(1, 1, 1, 2deg); }
+            100% { transform: translateY(0) rotate3d(1, 1, 1, 0deg); }
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 15px 30px rgba(107, 48, 255, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: linear-gradient(45deg, transparent, rgba(107, 48, 255, 0.1));
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card-content {
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .card h2 {
             font-size: 1.8em;
-            color: #8a5cff;
+            color: var(--hover-color);
             margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover h2 {
+            transform: scale(1.05);
         }
 
         .card p {
             font-size: 1em;
-            color: #bdbdb;
+            color: #bdbdbd;
             margin-bottom: 20px;
+            transition: opacity 0.3s;
         }
 
-        .card a {
-            text-decoration: none;
-            color: #fff;
-            background-color: #6b30ff;
-            padding: 10px 20px;
-            border-radius: 6px;
+        .card a, .theme-toggle, .comment-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--hover-color));
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: 8px;
             font-weight: bold;
-            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .card a:hover {
-            background-color: #0077ff;
+        .card a:hover, .theme-toggle:hover, .comment-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(107, 48, 255, 0.4);
         }
 
-        h2.comment-section {
-            margin-top: 50px;
-            color: #8a5cff;
+        .card a:active, .theme-toggle:active, .comment-btn:active {
+            transform: translateY(1px) scale(0.98);
         }
 
-        iframe {
+        .card a::after, .theme-toggle::after, .comment-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .card a:hover::after, .theme-toggle:hover::after, .comment-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
             border: none;
-            margin-top: 20px;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-            max-width: 100%;
-            width: 100%;
-            height: 600px;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .light-theme {
+            --bg-color: #f0f0f0;
+            --primary-color: #4a1fb8;
+            --hover-color: #6b30ff;
+            color: #333;
+        }
+
+        .light-theme header {
+            background-color: #ffffff;
+        }
+
+        .light-theme .card {
+            background-color: #ffffff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -114,67 +310,385 @@
             background-color: #1f1f1f;
             color: #9e9e9e;
             width: 100%;
+            position: relative;
+            overflow: hidden;
         }
 
-        footer p {
-            margin: 0;
+        footer::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--hover-color), var(--primary-color));
+            animation: gradient 3s linear infinite;
+            background-size: 200% 100%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        .comment-section {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .comment-input {
+            padding: 10px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            background: linear-gradient(#2a2a2a, #2a2a2a) padding-box,
+                        linear-gradient(45deg, var(--primary-color), var(--hover-color)) border-box;
+            transition: all 0.3s ease;
+            color: #fff;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .comment-input:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(107, 48, 255, 0.2);
+        }
+
+        textarea.comment-input {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .comment-btn {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .comment-btn:hover {
+            background: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        .comments-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .comment {
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .comment-author {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .comment-date {
+            color: #666;
             font-size: 0.9em;
         }
 
-        @media (max-width: 768px) {
-            .card {
-                width: 100%;
+        .comment-text {
+            color: #e0e0e0;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
             }
         }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
     </style>
 </head>
 <body>
+    <ul class="circles">
+        <li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li>
+    </ul>
 
-<header>
-    <h1>Vadimus Websitus</h1>
-</header>
+    <button class="theme-toggle">Toggle Theme</button>
 
-<main>
-    
-    <div class="card">
-        <div class="card-content">
-            <h2>3D Druck</h2>
-            <p>Da kannst du 3D-Drucker zuschauen und interessante Projekte sehen.</p>
-            <a href="https://commandx2603.github.io/3DDruck">Besuchen</a>
+    <header>
+        <h1 class="animate__animated animate__bounce">Vadimus Websitus</h1>
+    </header>
+
+    <main>
+        <div class="card animate__animated animate__fadeIn">
+            <div class="card-content">
+                <h2>3D Druck</h2>
+                <p>Da kannst du 3D-Drucker zuschauen und interessante Projekte sehen.</p>
+                <a href="https://commandx2603.github.io/3DDruck">Besuchen</a>
+            </div>
         </div>
+
+        <div class="card animate__animated animate__fadeIn">
+            <div class="card-content">
+                <h2>Sosonauten</h2>
+                <p>Die beste Band von Vadimus und Nilsus – Musik für die Ewigkeit.</p>
+                <a href="https://vadimus.com/Sosonauten.html">Besuchen</a>
+            </div>
+        </div>
+
+        <div class="card animate__animated animate__fadeIn">
+            <div class="card-content">
+                <h2>Community Website</h2>
+                <p>Hier kann die Community Ideen einreichen und die Website mitgestalten.</p>
+                <a href="https://vadimus.com/Aramsamsam.html">Besuchen</a>
+            </div>
+        </div>
+
+        <div class="card animate__animated animate__fadeIn">
+            <div class="card-content">
+                <h2>Ödel Vür Dödel</h2>
+                <p>Ein Podcast von Vadimus und Juliusus – interessante Interviews und Gespräche.</p>
+                <a href="https://vadimus.com/ÖdelVürDödel.html">Besuchen</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="comment-section">
+        <h2>Kommentare</h2>
+        <div class="comment-form">
+            <input type="text" id="commentName" placeholder="Dein Name" class="comment-input">
+            <textarea id="commentText" placeholder="Dein Kommentar" class="comment-input"></textarea>
+            <button id="submitComment" class="comment-btn">Kommentar senden</button>
+        </div>
+        <div id="comments" class="comments-container"></div>
     </div>
 
-    <div class="card">
-        <div class="card-content">
-            <h2>Sosonauten</h2>
-            <p>Die beste Band von Vadimus und Nilsus – Musik für die Ewigkeit.</p>
-            <a href="Sosonauten.html">Besuchen</a>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2024 Vadimus Websitus. Alle Rechte vorbehalten.</p>
+    </footer>
 
-    <div class="card">
-        <div class="card-content">
-            <h2>Community Website</h2>
-            <p>Hier kann die Community Ideen einreichen und die Website mitgestalten.</p>
-            <a href="Aramsamsam.html">Besuchen</a>
-        </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script>
+        // Initialize Gun with multiple peers for better reliability
+        const gun = Gun({
+            peers: [
+                'https://gun-manhattan.herokuapp.com/gun',
+                'https://gun-us.herokuapp.com/gun',
+                'https://gun-eu.herokuapp.com/gun'
+            ]
+        });
 
-    <div class="card">
-        <div class="card-content">
-            <h2>Ödel Vür Dödel</h2>
-            <p>Ein Podcast von Vadimus und Juliusus – interessante Interviews und Gespräche.</p>
-            <a href="ÖdelVürDödel.html">Besuchen</a>
-        </div>
-    </div>
-</main>
+        // Create a namespaced reference for comments with timestamp
+        const commentsRef = gun.get('vadimus-comments-' + new Date().toISOString().slice(0,10));
 
-<h2 class="comment-section">Hier kannst du kommentieren</h2>
-<iframe src="https://e.widgetbot.io/channels/1241405561720017109/1241413161236561950" allow="clipboard-write; fullscreen"></iframe>
+        // Handle comment submission
+        document.getElementById('submitComment').addEventListener('click', () => {
+            const nameInput = document.getElementById('commentName');
+            const textInput = document.getElementById('commentText');
+            
+            if (!nameInput.value.trim() || !textInput.value.trim()) {
+                alert('Bitte fülle alle Felder aus!');
+                return;
+            }
 
-<footer>
-    <p>&copy; 2024 Vadimus Websitus. Alle Rechte vorbehalten.</p>
-</footer>
+            // Create comment object with unique ID
+            const commentId = Date.now() + Math.random().toString(36).substr(2, 9);
+            const comment = {
+                id: commentId,
+                author: nameInput.value.trim(),
+                text: textInput.value.trim(),
+                timestamp: Date.now()
+            };
 
+            // Save comment to Gun
+            commentsRef.get(commentId).put(comment);
+
+            // Clear inputs
+            nameInput.value = '';
+            textInput.value = '';
+        });
+
+        // Clear existing comments container
+        const commentsContainer = document.getElementById('comments');
+        commentsContainer.innerHTML = '';
+
+        // Listen for comments and display them
+        commentsRef.map().once((comment, id) => {
+            if (!comment || !comment.author || !comment.text) return;
+            
+            const commentElement = document.createElement('div');
+            commentElement.className = 'comment animate__animated animate__fadeIn';
+            
+            const date = new Date(comment.timestamp);
+            
+            commentElement.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author">${comment.author}</span>
+                    <span class="comment-date">${date.toLocaleDateString()} ${date.toLocaleTimeString()}</span>
+                </div>
+                <div class="comment-text">${comment.text}</div>
+            `;
+
+            // Insert new comments at the top
+            commentsContainer.insertBefore(commentElement, commentsContainer.firstChild);
+        });
+
+        // Add error handling for Gun connection
+        gun.on('error', function(err) {
+            console.error('Gun error:', err);
+            alert('Es gab ein Problem mit der Verbindung. Bitte versuche es später erneut.');
+        });
+        
+        // Add animation on scroll
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            observer.observe(card);
+        });
+
+        // Add quick pulse animation on hover
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Add a quick pulse animation on hover instead of sound
+                card.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 500);
+            });
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / card.clientWidth) * 100;
+                const y = ((e.clientY - rect.top) / card.clientHeight) * 100;
+                
+                card.style.setProperty('--x', `${x}%`);
+                card.style.setProperty('--y', `${y}%`);
+                
+                // Add tilt effect
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const rotateY = (e.clientX - centerX) / 20;
+                const rotateX = (centerY - e.clientY) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // Add ripple effect on button click
+        document.querySelectorAll('.card a, .theme-toggle, .comment-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - this.offsetLeft;
+                const y = e.clientY - this.offsetTop;
+                
+                const ripple = document.createElement('span');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.position = 'absolute';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.width = '0';
+                ripple.style.height = '0';
+                ripple.style.background = 'rgba(255, 255, 255, 0.4)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transition = 'all 0.6s ease-out';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.width = '300px';
+                    ripple.style.height = '300px';
+                    ripple.style.opacity = '0';
+                }, 0);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add animated particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = Math.random() * window.innerHeight + 'px';
+            particle.style.animation = `float ${5 + Math.random() * 10}s linear infinite`;
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 15000);
+        }
+
+        setInterval(createParticle, 1000);
+
+        // Animate floating circles
+        const circles = document.querySelectorAll('.circles li');
+        circles.forEach((circle, index) => {
+            const size = Math.random() * 30 + 10;
+            circle.style.width = `${size}px`;
+            circle.style.height = `${size}px`;
+            circle.style.left = `${Math.random() * 100}%`;
+            circle.style.animationDelay = `${Math.random() * 5}s`;
+            circle.style.animationDuration = `${Math.random() * 10 + 20}s`;
+        });
+
+        // Add mouse trail effect
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'particle';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
