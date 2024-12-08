@@ -261,6 +261,15 @@
             z-index: 1000;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -417,10 +426,17 @@
             }
         }
 
-        #browser-warning a:hover {
-            text-decoration: none !important;
-            text-shadow: 0 0 10px white;
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
+
     </style>
 </head>
 <body>
@@ -485,82 +501,52 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <script>
-        // Browser detection function
-        function detectOpera() {
-            // Check for Opera browser
-            return (
-                (!!window.opr && !!opr.addons) || 
-                !!window.opera || 
-                navigator.userAgent.indexOf(' OPR/') >= 0 ||
-                navigator.userAgent.indexOf('Opera') >= 0
-            );
-        }
-
-        // Create and show Opera warning if needed
-        if (detectOpera()) {
-            const warningDiv = document.createElement('div');
-            warningDiv.innerHTML = `
-                <div id="browser-warning" style="
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    background: linear-gradient(45deg, #ff4444, #ff0000);
-                    color: white;
-                    padding: 20px;
-                    text-align: center;
-                    z-index: 10000;
-                    font-size: 1.2em;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-                    animation: slideDown 0.5s ease-out;
-                ">
-                    <p style="margin: 0;">
-                        ⚠️ Sie verwenden Opera. Für ein besseres Erlebnis empfehlen wir 
-                        <a href="https://www.mozilla.org/firefox/" style="
-                            color: white;
-                            text-decoration: underline;
-                            font-weight: bold;
-                        ">Firefox</a>!
-                    </p>
-                </div>
-            `;
-            document.body.insertBefore(warningDiv, document.body.firstChild);
-        }
-
-        // Initialize Gun
+        // Initialize Gun with multiple peers for better reliability
         const gun = Gun({
-            peers: ['https://gun-manhattan.herokuapp.com/gun'] // You might want to set up your own relay peer
+            peers: [
+                'https://gun-manhattan.herokuapp.com/gun',
+                'https://gun-us.herokuapp.com/gun',
+                'https://gun-eu.herokuapp.com/gun'
+            ]
         });
 
-        // Get the comments space
-        const comments = gun.get('vadimus-website-comments');
+        // Create a namespaced reference for comments with timestamp
+        const commentsRef = gun.get('vadimus-comments-' + new Date().toISOString().slice(0,10));
 
         // Handle comment submission
         document.getElementById('submitComment').addEventListener('click', () => {
             const nameInput = document.getElementById('commentName');
             const textInput = document.getElementById('commentText');
             
-            if (!nameInput.value || !textInput.value) {
+            if (!nameInput.value.trim() || !textInput.value.trim()) {
                 alert('Bitte fülle alle Felder aus!');
                 return;
             }
 
+            // Create comment object with unique ID
+            const commentId = Date.now() + Math.random().toString(36).substr(2, 9);
             const comment = {
-                author: nameInput.value,
-                text: textInput.value,
+                id: commentId,
+                author: nameInput.value.trim(),
+                text: textInput.value.trim(),
                 timestamp: Date.now()
             };
 
-            comments.set(comment);
+            // Save comment to Gun
+            commentsRef.get(commentId).put(comment);
 
             // Clear inputs
             nameInput.value = '';
             textInput.value = '';
         });
 
-        // Listen for new comments
-        comments.map().once((comment, id) => {
-            if (!comment) return;
+        // Clear existing comments container
+        const commentsContainer = document.getElementById('comments');
+        commentsContainer.innerHTML = '';
+
+        // Listen for comments and display them
+        commentsRef.map().once((comment, id) => {
+            if (!comment || !comment.author || !comment.text) return;
             
             const commentElement = document.createElement('div');
             commentElement.className = 'comment animate__animated animate__fadeIn';
@@ -575,10 +561,16 @@
                 <div class="comment-text">${comment.text}</div>
             `;
 
-            const container = document.getElementById('comments');
-            container.insertBefore(commentElement, container.firstChild);
+            // Insert new comments at the top
+            commentsContainer.insertBefore(commentElement, commentsContainer.firstChild);
         });
 
+        // Add error handling for Gun connection
+        gun.on('error', function(err) {
+            console.error('Gun error:', err);
+            alert('Es gab ein Problem mit der Verbindung. Bitte versuche es später erneut.');
+        });
+        
         // Add animation on scroll
         const cards = document.querySelectorAll('.card');
         const observer = new IntersectionObserver((entries) => {
